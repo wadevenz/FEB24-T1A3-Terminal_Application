@@ -20,3 +20,15 @@ def ask_pin():
         print("Valid PIN must be 4 digits!")
     else:
         return pin
+
+def handle_create():
+    name = ask_name()
+    pin = ask_pin()
+    create_account(main_file, name, pin, initial_balance)
+
+def handle_access():
+    pin = ask_pin()
+    current_user = get_account(main_file, pin)
+    main_menu()
+
+    
