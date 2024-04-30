@@ -3,7 +3,7 @@ import csv
 
 from colored import Fore, Back, Style
 
-from bank_functions import create_account, get_account
+from bank_functions import create_account, get_account, view_balance, withdraw, deposit
 
 print(f"\n{Fore.cyan}Welcome to Terminal Bank{Style.reset}\n")
 
@@ -63,4 +63,27 @@ def welcome_menu():
         print("Please select from the options above")
         welcome_menu()
 
+def main_menu():
+    print(f"{Fore.cyan}1. View Balance")
+    print("2. Withdrawal")
+    print("3. Deposit")
+    print(f"4. Exit\n{Style.reset}")
 
+    user_choice = input(f"{Fore.yellow}Enter your selection from the options above: {Style.reset}\n")
+
+    choice = user_choice
+
+    if (choice == "1"):
+        view_balance()
+    
+    elif (choice == "2"):
+        withdraw()
+    
+    elif (choice == "3"):
+        deposit()
+
+    elif (choice == "4"):
+        print ("See you again soon!")
+        pass
+
+welcome_menu()

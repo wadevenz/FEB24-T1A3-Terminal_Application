@@ -22,5 +22,14 @@ def get_account(main_file, pin):
                     return row
     except FileNotFoundError:
         return None
+    
+def view_balance():
+    pass
+
+def withdraw():
+    pass
+
+def deposti():
+    pass
  
     
