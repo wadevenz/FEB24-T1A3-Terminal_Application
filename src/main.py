@@ -3,6 +3,8 @@ import csv
 
 from colored import Fore, Back, Style
 
+from bank_functions import create_account, get_account
+
 print(f"\n{Fore.cyan}Welcome to Terminal Bank{Style.reset}\n")
 
 current_user = None
@@ -37,4 +39,28 @@ if (not os.path.isfile(main_file)):
     account_details = open(main_file, "w")
     account_details.write("name,pin,balance\n")
     account_details.close()
+
+def welcome_menu():
+    print(f"{Fore.cyan}1. Create Account")
+    print(f"2. Access Account")
+    print(f"3. Exit{Style.reset}\n")
+
+    user_selection = input(f"{Fore.yellow}Enter your selection from the options above: {Style.reset}\n")
+
+    selection = user_selection
+
+    if (selection == "1"):
+        handle_create()
+        welcome_menu()
+
+    elif (selection == "2"):
+        handle_access()
+
+    elif (selection == "3"):
+        print ("See you again soon")
+        exit()
+    else:
+        print("Please select from the options above")
+        welcome_menu()
+
 
