@@ -29,7 +29,7 @@ def view_balance():
 def withdraw():
     pass
 
-def deposti():
+def deposit():
     pass
  
     
