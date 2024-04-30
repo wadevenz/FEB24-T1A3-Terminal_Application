@@ -23,8 +23,8 @@ def get_account(main_file, pin):
     except FileNotFoundError:
         return None
     
-def view_balance():
-    pass
+def view_balance(main_file, name, pin, balance):
+    print (f"\n{Fore.blue}Hello {name}! You have ${balance} in your account!{Style.reset}\n")
 
 def withdraw():
     pass

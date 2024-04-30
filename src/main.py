@@ -10,6 +10,7 @@ print(f"\n{Fore.cyan}Welcome to Terminal Bank{Style.reset}\n")
 current_user = None
 initial_balance = 100
 
+
 def ask_name():
     name = input("Please enter your First Name: ")
     return name
@@ -31,7 +32,7 @@ def handle_create():
 def handle_access():
     pin = ask_pin()
     current_user = get_account(main_file, pin)
-    main_menu()
+    main_menu(main_file, current_user['name'], current_user['pin'], current_user['balance'])
 
 main_file = "account_details.csv"
 
@@ -45,7 +46,7 @@ def welcome_menu():
     print(f"2. Access Account")
     print(f"3. Exit{Style.reset}\n")
 
-    user_selection = input(f"{Fore.yellow}Enter your selection from the options above: {Style.reset}\n")
+    user_selection = input(f"{Fore.yellow}Enter your selection from the options above: {Style.reset}")
 
     selection = user_selection
 
@@ -57,33 +58,38 @@ def welcome_menu():
         handle_access()
 
     elif (selection == "3"):
-        print ("See you again soon")
+        print ("Thanks for banking with Terminal Bank! See you again soon")
         exit()
     else:
         print("Please select from the options above")
         welcome_menu()
 
-def main_menu():
-    print(f"{Fore.cyan}1. View Balance")
+
+
+def main_menu(main_file, name, pin, balance):
+    print(f"\n{Fore.cyan}1. View Balance")
     print("2. Withdrawal")
     print("3. Deposit")
-    print(f"4. Exit\n{Style.reset}")
+    print(f"4. Back\n{Style.reset}")
 
-    user_choice = input(f"{Fore.yellow}Enter your selection from the options above: {Style.reset}\n")
+    user_choice = input(f"{Fore.yellow}Enter your selection from the options above: {Style.reset}")
 
     choice = user_choice
 
+
     if (choice == "1"):
-        view_balance()
-    
+        view_balance(main_file, name, pin, balance)
+        
     elif (choice == "2"):
-        withdraw()
-    
+        withdraw(main_file, name, pin, balance)
+        
     elif (choice == "3"):
-        deposit()
+        deposit(main_file, name, pin, balance)
 
     elif (choice == "4"):
         print ("See you again soon!")
-        pass
+        current_user = None
+    else:
+        print("Please choose from the options provided")
 
 welcome_menu()
