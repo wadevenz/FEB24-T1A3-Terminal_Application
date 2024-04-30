@@ -31,4 +31,10 @@ def handle_access():
     current_user = get_account(main_file, pin)
     main_menu()
 
-    
+main_file = "account_details.csv"
+
+if (not os.path.isfile(main_file)):
+    account_details = open(main_file, "w")
+    account_details.write("name,pin,balance\n")
+    account_details.close()
+
