@@ -17,12 +17,11 @@ def ask_name():
 
 def ask_pin():
     pin = input("Please enter a 4 digit PIN: ")
-    if not pin.isdigit():
-        print ("Please use only numbers!")
-    elif len(pin) != 4:
-        print("Valid PIN must be 4 digits!")
-    else:
+    if pin.isdigit() and len(pin) == 4:
         return pin
+    else:
+        print(f"{Fore.red}Invalid PIN\n{Style.reset}")    
+        welcome_menu()
 
 def handle_create():
     name = ask_name()
@@ -67,6 +66,7 @@ def welcome_menu():
 
 
 def main_menu(main_file, name, pin, balance):
+    print(f"\nHello {name}!\n")
     print(f"\n{Fore.cyan}1. View Balance")
     print("2. Withdrawal")
     print("3. Deposit")
@@ -78,18 +78,22 @@ def main_menu(main_file, name, pin, balance):
 
 
     if (choice == "1"):
-        view_balance(main_file, name, pin, balance)
+        view_balance(main_file, name, balance)
+        main_menu(main_file, name, pin, balance)
         
     elif (choice == "2"):
         withdraw(main_file, name, pin, balance)
+        main_menu(main_file, name, pin, balance)
         
     elif (choice == "3"):
         deposit(main_file, name, pin, balance)
+        main_menu(main_file, name, pin, balance)
 
     elif (choice == "4"):
-        print ("See you again soon!")
-        current_user = None
+        welcome_menu()
+    
     else:
         print("Please choose from the options provided")
+
 
 welcome_menu()
