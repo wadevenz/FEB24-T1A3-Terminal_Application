@@ -23,13 +23,14 @@ def ask_pin():
         print(f"{Fore.red}Invalid PIN\n{Style.reset}")    
         welcome_menu()
 
+
 def ask_amount():
-    amount = int(input("Please enter an amount: "))
     try:
+        amount = int(input("Please enter amount: "))
         if amount > 0:
             return amount
-    except Exception:
-        print("Not supported input")
+    except ValueError:
+        print(f"{Fore.red}Error{Style.reset}")
 
 
 def handle_create():
@@ -39,8 +40,12 @@ def handle_create():
 
 def handle_access():
     pin = ask_pin()
-    current_user = get_account(main_file, pin)
-    main_menu(main_file, current_user['name'], current_user['pin'], current_user['balance'])
+    if get_account(main_file,pin) != None:
+        current_user = get_account(main_file, pin)
+        main_menu(main_file, current_user['name'], current_user['pin'], current_user['balance'])
+    else:
+        print(f"\n{Fore.red}Incorrect PIN{Style.reset}\n")
+        welcome_menu()
 
 main_file = "account_details.csv"
 
@@ -69,13 +74,13 @@ def welcome_menu():
         print ("Thanks for banking with Terminal Bank! See you again soon")
         exit()
     else:
-        print(f"{Fore.red}Please select from the options{Style.reset}")
+        print(f"\n{Fore.red}Please select from the options{Style.reset}\n")
         welcome_menu()
 
 
 
 def main_menu(main_file, name, pin, balance):
-    print(f"Account - {name}\n")
+    print(f"\n{Back.black}Account - {name}{Style.reset}\n")
     print(f"\n{Fore.cyan}1. View Balance")
     print("2. Withdrawal")
     print("3. Deposit")
