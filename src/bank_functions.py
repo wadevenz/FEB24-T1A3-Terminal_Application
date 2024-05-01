@@ -23,7 +23,9 @@ def get_account(main_file, pin):
     except FileNotFoundError:
         return None
     
-def view_balance(main_file, name, balance):
+def view_balance(main_file, name, pin):
+    get_balance = get_account(main_file, pin)
+    balance = get_balance['balance']
     print (f"\n{Fore.blue}Hello {name}! You have ${balance} in your account!{Style.reset}\n")
 
 def withdraw(main_file, name, pin, balance, amount):
@@ -34,8 +36,8 @@ def withdraw(main_file, name, pin, balance, amount):
             if (pin != row[1]):
                 cum_balance.append(row)
             else:
-                balance = int(balance)
-                if amount <= balance:
+                balance = int(row[2])
+                if (amount <= balance):
                     new_balance = balance - amount
                     cum_balance.append([name,pin,new_balance])
                     print(f"{Fore.blue}Thanks {name}! You have withdrawn ${amount}, you now have ${new_balance} in your account!\n{Style.reset}")
@@ -55,7 +57,8 @@ def deposit(main_file, name, pin, balance, amount):
             if (pin != row[1]):
                 cum_balance.append(row)
             else:
-                new_balance = int(balance) + amount
+                balance = int(row[2])
+                new_balance = balance + amount
                 cum_balance.append([name,pin,new_balance])
                 print(f"{Fore.blue}Thanks {name}! You have deposited ${amount}, you now have ${new_balance} in your account!\n{Style.reset}")
     with open(main_file, "w") as f:

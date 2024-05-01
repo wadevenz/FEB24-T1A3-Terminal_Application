@@ -25,10 +25,12 @@ def ask_pin():
 
 def ask_amount():
     amount = int(input("Please enter an amount: "))
-    while amount > 0:
-        return amount
-    else:
-        print("Invalid amount")
+    try:
+        if amount > 0:
+            return amount
+    except Exception:
+        print("Not supported input")
+
 
 def handle_create():
     name = ask_name()
@@ -67,32 +69,31 @@ def welcome_menu():
         print ("Thanks for banking with Terminal Bank! See you again soon")
         exit()
     else:
-        print("Please select from the options above")
+        print(f"{Fore.red}Please select from the options{Style.reset}")
         welcome_menu()
 
 
 
-def main_menu(main_file, name, pin, balance,):
+def main_menu(main_file, name, pin, balance):
     print(f"Account - {name}\n")
     print(f"\n{Fore.cyan}1. View Balance")
     print("2. Withdrawal")
     print("3. Deposit")
     print(f"4. Back\n{Style.reset}")
 
-    user_choice = input(f"{Fore.yellow}Enter your selection from the options above: {Style.reset}")
+    user_choice = input(f"{Fore.yellow}Enter your selection from the options provided: {Style.reset}")
 
     choice = user_choice
 
-
     if (choice == "1"):
-        view_balance(main_file, name, balance)
+        view_balance(main_file, name, pin)
         main_menu(main_file, name, pin, balance)
-        
+            
     elif (choice == "2"):
         amount = ask_amount()
         withdraw(main_file, name, pin, balance, amount)
         main_menu(main_file, name, pin, balance)
-        
+
     elif (choice == "3"):
         amount = ask_amount()
         deposit(main_file, name, pin, balance, amount)
@@ -100,9 +101,10 @@ def main_menu(main_file, name, pin, balance,):
 
     elif (choice == "4"):
         welcome_menu()
-    
+        
     else:
-        print("Please choose from the options provided")
+        print(f"{Fore.red}Please choose from the options provided{Style.reset}")
+        main_menu(main_file, name, pin, balance)
 
 
 welcome_menu()
