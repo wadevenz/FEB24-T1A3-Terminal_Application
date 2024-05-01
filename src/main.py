@@ -25,7 +25,10 @@ def ask_pin():
 
 def ask_amount():
     amount = int(input("Please enter an amount: "))
-    return amount
+    while amount > 0:
+        return amount
+    else:
+        print("Invalid amount")
 
 def handle_create():
     name = ask_name()
@@ -70,7 +73,7 @@ def welcome_menu():
 
 
 def main_menu(main_file, name, pin, balance,):
-    print(f"\nHello {name}!\n")
+    print(f"Account - {name}\n")
     print(f"\n{Fore.cyan}1. View Balance")
     print("2. Withdrawal")
     print("3. Deposit")

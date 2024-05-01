@@ -34,18 +34,33 @@ def withdraw(main_file, name, pin, balance, amount):
             if (pin != row[1]):
                 cum_balance.append(row)
             else:
-                balance = int(row[2])
-                if (amount > 0) and (amount <= balance):
+                balance = int(balance)
+                if amount <= balance:
                     new_balance = balance - amount
-                    cum_balance.append([row[0], row[1], new_balance])
-                    print(f"{Fore.blue}Thanks {row[0]}! You have withdrawn ${amount}, you now have ${new_balance} in your account!\n{Style.reset}")
+                    cum_balance.append([name,pin,new_balance])
+                    print(f"{Fore.blue}Thanks {name}! You have withdrawn ${amount}, you now have ${new_balance} in your account!\n{Style.reset}")
                 else:
-                    print(f"{Fore.red}Incorrect Amount. Value must be below or equal to available balance and above $0{Style.reset}")
+                    print(f"{Fore.red}Insufficient Funds{Style.reset}")
+                    cum_balance.append ([name,pin,balance])
+                    continue
     with open(main_file, "w") as f:
         writer = csv.writer(f)
         writer.writerows(cum_balance)
 
 def deposit(main_file, name, pin, balance, amount):
-    pass
+    cum_balance = []
+    with open(main_file, "r") as f:
+        reader = csv.reader(f)
+        for row in reader:
+            if (pin != row[1]):
+                cum_balance.append(row)
+            else:
+                new_balance = int(balance) + amount
+                cum_balance.append([name,pin,new_balance])
+                print(f"{Fore.blue}Thanks {name}! You have deposited ${amount}, you now have ${new_balance} in your account!\n{Style.reset}")
+    with open(main_file, "w") as f:
+        writer = csv.writer(f)
+        writer.writerows(cum_balance)
+        
  
     
