@@ -29,47 +29,47 @@ def view_balance(main_file, name, pin):
     print (f"\n{Fore.blue}Hello {name}! You have ${balance} in your account!{Style.reset}\n")
 
 def withdraw(main_file, name, pin, balance, amount):
-    cum_balance = []
+    app_balance = []
     try:
         with open(main_file, "r") as f:
             reader = csv.reader(f)
             for row in reader:
                 if (pin != row[1]):
-                    cum_balance.append(row)
+                    app_balance.append(row)
                 else:
-                    balance = float(row[2])
+                    balance = int(row[2])
                     if amount <= balance:
                         new_balance = balance - amount
-                        cum_balance.append([name,pin,new_balance])
+                        app_balance.append([name,pin,new_balance])
                         print(f"{Fore.blue}Thanks {name}! You have withdrawn ${amount}, you now have ${new_balance} in your account!\n{Style.reset}")
                     else:
                         print(f"{Fore.red}Insufficient Funds{Style.reset}")
-                        cum_balance.append ([name,pin,balance])
+                        app_balance.append ([name,pin,balance])
                         continue
         with open(main_file, "w") as f:
             writer = csv.writer(f)
-            writer.writerows(cum_balance)
+            writer.writerows(app_balance)
     except TypeError:
         print(f"{Fore.red}Please enter valid input{Style.reset}")
 
     
 
 def deposit(main_file, name, pin, balance, amount):
-    cum_balance = []
+    app_balance = []
     try:
         with open(main_file, "r") as f:
             reader = csv.reader(f)
             for row in reader:
                 if (pin != row[1]):
-                    cum_balance.append(row)
+                    app_balance.append(row)
                 else:
-                    balance = float(row[2])
+                    balance = int(row[2])
                     new_balance = balance + amount
-                    cum_balance.append([name,pin,new_balance])
+                    app_balance.append([name,pin,new_balance])
                     print(f"{Fore.blue}Thanks {name}! You have deposited ${amount}, you now have ${new_balance} in your account!\n{Style.reset}")
         with open(main_file, "w") as f:
             writer = csv.writer(f)
-            writer.writerows(cum_balance)
+            writer.writerows(app_balance)
     except TypeError:
         print(f"{Fore.red}Please enter valid input{Style.reset}")
  

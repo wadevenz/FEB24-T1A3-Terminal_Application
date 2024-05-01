@@ -26,7 +26,7 @@ def ask_pin():
 
 def ask_amount():
     try:
-        amount = float(input("Please enter amount: "))
+        amount = int(input("Please enter amount: "))
         if amount > 0:
             return amount
     except ValueError:
