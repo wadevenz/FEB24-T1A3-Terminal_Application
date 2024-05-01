@@ -5,14 +5,14 @@ from colored import Fore, Back, Style
 
 from bank_functions import create_account, get_account, view_balance, withdraw, deposit
 
-print(f"\n{Fore.cyan}Welcome to Terminal Bank{Style.reset}\n")
+print(f"\n{Fore.cyan}{Style.bold}Welcome to Terminal Bank{Style.reset}\n")
 
 current_user = None
 initial_balance = 100
 
 
 def ask_name():
-    name = input("Please enter your First Name: ")
+    name = input("Please enter your Name: ")
     return name
 
 def ask_pin():
@@ -22,6 +22,10 @@ def ask_pin():
     else:
         print(f"{Fore.red}Invalid PIN\n{Style.reset}")    
         welcome_menu()
+
+def ask_amount():
+    amount = int(input("Please enter an amount: "))
+    return amount
 
 def handle_create():
     name = ask_name()
@@ -65,7 +69,7 @@ def welcome_menu():
 
 
 
-def main_menu(main_file, name, pin, balance):
+def main_menu(main_file, name, pin, balance,):
     print(f"\nHello {name}!\n")
     print(f"\n{Fore.cyan}1. View Balance")
     print("2. Withdrawal")
@@ -82,11 +86,13 @@ def main_menu(main_file, name, pin, balance):
         main_menu(main_file, name, pin, balance)
         
     elif (choice == "2"):
-        withdraw(main_file, name, pin, balance)
+        amount = ask_amount()
+        withdraw(main_file, name, pin, balance, amount)
         main_menu(main_file, name, pin, balance)
         
     elif (choice == "3"):
-        deposit(main_file, name, pin, balance)
+        amount = ask_amount()
+        deposit(main_file, name, pin, balance, amount)
         main_menu(main_file, name, pin, balance)
 
     elif (choice == "4"):
