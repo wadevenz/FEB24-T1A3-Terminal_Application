@@ -3,7 +3,7 @@ import csv
 
 from colored import Fore, Back, Style
 
-from bank_functions import create_account, get_account, view_balance, withdraw, deposit
+from bank_functions import create_account, get_account, view_balance, withdraw, deposit, remove_account
 
 print(f"\n{Fore.cyan}{Style.bold}Welcome to Terminal Bank{Style.reset}\n")
 
@@ -26,7 +26,7 @@ def ask_pin():
 
 def ask_amount():
     try:
-        amount = int(input("Please enter amount: "))
+        amount = float(input("Please enter amount: "))
         if amount > 0:
             return amount
     except ValueError:
@@ -84,7 +84,8 @@ def main_menu(main_file, name, pin, balance):
     print(f"\n{Fore.cyan}1. View Balance")
     print("2. Withdrawal")
     print("3. Deposit")
-    print(f"4. Back\n{Style.reset}")
+    print("4. Remove Account")
+    print(f"5. Back\n{Style.reset}")
 
     user_choice = input(f"{Fore.yellow}Enter your selection from the options provided: {Style.reset}")
 
@@ -105,6 +106,15 @@ def main_menu(main_file, name, pin, balance):
         main_menu(main_file, name, pin, balance)
 
     elif (choice == "4"):
+        confirm = input("Are you sure you want to remove account? Y/N: ")
+        if confirm.upper() == "Y":
+            remove_account(main_file, pin)
+            print(f"\nThanks {name}! Your account has been removed. Please take your ${balance}\n")
+            welcome_menu()
+        else:
+            main_menu(main_file, name, pin, balance)
+
+    elif (choice == "5"):
         welcome_menu()
         
     else:

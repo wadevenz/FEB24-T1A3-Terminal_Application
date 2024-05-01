@@ -37,7 +37,7 @@ def withdraw(main_file, name, pin, balance, amount):
                 if (pin != row[1]):
                     cum_balance.append(row)
                 else:
-                    balance = int(row[2])
+                    balance = float(row[2])
                     if amount <= balance:
                         new_balance = balance - amount
                         cum_balance.append([name,pin,new_balance])
@@ -50,25 +50,36 @@ def withdraw(main_file, name, pin, balance, amount):
             writer = csv.writer(f)
             writer.writerows(cum_balance)
     except TypeError:
-        print(f"{Fore.red}Please ienter valid input{Style.reset}")
+        print(f"{Fore.red}Please enter valid input{Style.reset}")
 
     
 
 def deposit(main_file, name, pin, balance, amount):
     cum_balance = []
-    with open(main_file, "r") as f:
-        reader = csv.reader(f)
-        for row in reader:
-            if (pin != row[1]):
-                cum_balance.append(row)
-            else:
-                balance = int(row[2])
-                new_balance = balance + amount
-                cum_balance.append([name,pin,new_balance])
-                print(f"{Fore.blue}Thanks {name}! You have deposited ${amount}, you now have ${new_balance} in your account!\n{Style.reset}")
-    with open(main_file, "w") as f:
-        writer = csv.writer(f)
-        writer.writerows(cum_balance)
-        
+    try:
+        with open(main_file, "r") as f:
+            reader = csv.reader(f)
+            for row in reader:
+                if (pin != row[1]):
+                    cum_balance.append(row)
+                else:
+                    balance = float(row[2])
+                    new_balance = balance + amount
+                    cum_balance.append([name,pin,new_balance])
+                    print(f"{Fore.blue}Thanks {name}! You have deposited ${amount}, you now have ${new_balance} in your account!\n{Style.reset}")
+        with open(main_file, "w") as f:
+            writer = csv.writer(f)
+            writer.writerows(cum_balance)
+    except TypeError:
+        print(f"{Fore.red}Please enter valid input{Style.reset}")
  
-    
+def remove_account(main_file, pin):
+    new_file = []
+    with open(main_file, "r") as f:
+            reader = csv.reader(f)
+            for row in reader:
+                if (pin != row[1]):
+                    new_file.append(row) 
+    with open(main_file, "w") as f:
+            writer = csv.writer(f)
+            writer.writerows(new_file)
