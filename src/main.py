@@ -100,23 +100,18 @@ def main_menu(main_file, name, pin, balance):
     print(f"5. Back\n{Style.reset}")
 
     user_choice = input(f"{Fore.yellow}Enter your selection from the options provided: {Style.reset}")
-
     choice = user_choice
-
     if (choice == "1"):
         view_balance(main_file, name, pin)
         main_menu(main_file, name, pin, balance)
-            
     elif (choice == "2"):
         amount = ask_amount()
         withdraw(main_file, name, pin, balance, amount)
         main_menu(main_file, name, pin, balance)
-
     elif (choice == "3"):
         amount = ask_amount()
         deposit(main_file, name, pin, balance, amount)
         main_menu(main_file, name, pin, balance)
-
     elif (choice == "4"):
         final_balance = remove_account(main_file, pin)
         confirm = input(f"{Back.red}Are you sure you want to remove account? Y/N: {Style.reset}")
@@ -129,14 +124,12 @@ def main_menu(main_file, name, pin, balance):
         else:
             print(f"{Fore.red}Invalid input{Style.reset}")
             main_menu(main_file, name, pin, balance)
-
     elif (choice == "5"):
         welcome_menu()
-        
     else:
         print(f"{Fore.red}Please choose from the options provided{Style.reset}")
         main_menu(main_file, name, pin, balance)
 
-# reads function first, starts application with welcome menu.
+# reads function first, starts application with welcome menu
 
 welcome_menu()
