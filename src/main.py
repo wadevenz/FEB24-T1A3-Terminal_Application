@@ -113,9 +113,11 @@ def main_menu(main_file, name, pin, balance):
         deposit(main_file, name, pin, balance, amount)
         main_menu(main_file, name, pin, balance)
     elif (choice == "4"):
-        final_balance = remove_account(main_file, pin)
-        confirm = input(f"{Back.red}Are you sure you want to remove account? Y/N: {Style.reset}")
+        get_balance = get_account(main_file, pin)
+        final_balance = get_balance['balance']
+        confirm = input(f"{Back.red}{Fore.white}Are you sure you want to remove account? Y/N: {Style.reset}")
         if confirm.upper() == "Y":
+            remove_account(main_file, pin)
             print(f"\n{Back.blue}Thanks {name}! Your account has been removed. Please take your ${final_balance}{Style.reset}\n")
             welcome_menu()
         elif confirm.upper() == "N":

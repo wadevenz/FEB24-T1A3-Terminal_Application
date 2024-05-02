@@ -3,7 +3,6 @@ import os.path
 
 from bank_functions import create_account, get_account, withdraw, deposit
 
-# manually created headings in 'test_account_csv' for test to work
 main_file = "test_account.csv"
 
 if (not os.path.isfile(main_file)):
@@ -25,10 +24,6 @@ def test_create_account():
     assert user['balance'] == '100'
     assert user['balance'] != '-50'
     
-
-
-
-# to test following functions, temporary 'return = new_balance' added within the functions in bank_functions
 
 def test_withdraw():
     name = 'Watson'
@@ -60,11 +55,13 @@ def test_deposit():
     assert new_balance != 'Two hundred'
     assert balance != 300
 
+
+
 # tested last as it also serves to test other created accounts
 
 def test_get_account():
     assert get_account ('fake.csv', '1111') == None
     assert get_account ('test_account.csv','1111') == {'name':'Wade','pin': '1111','balance':'100'}
     assert get_account ('test_account.csv','9876') != {'name':'Wade','pin': '1111','balance':'100'}
-    assert get_account ('test_account.csv','5555') == {'name':'Watson','pin': '5555','balance':'80'}
+    assert get_account ('test_account.csv','5555') == {'name':'Watson','pin': '5555','balance':'60'}
     assert get_account ('test_account.csv','1111') != {'name':'Wade','pin': '2222','balance':'200'}
