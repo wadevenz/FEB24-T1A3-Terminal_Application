@@ -108,8 +108,8 @@ def main_menu(main_file, name, pin, balance):
     elif (choice == "4"):
         confirm = input("Are you sure you want to remove account? Y/N: ")
         if confirm.upper() == "Y":
-            remove_account(main_file, pin)
-            print(f"\nThanks {name}! Your account has been removed. Please take your ${balance}\n")
+            final_balance = remove_account(main_file, pin)
+            print(f"\nThanks {name}! Your account has been removed. Please take your ${final_balance}\n")
             welcome_menu()
         else:
             main_menu(main_file, name, pin, balance)

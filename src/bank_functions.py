@@ -42,6 +42,7 @@ def withdraw(main_file, name, pin, balance, amount):
                         new_balance = balance - amount
                         app_balance.append([name,pin,new_balance])
                         print(f"{Fore.blue}Thanks {name}! You have withdrawn ${amount}, you now have ${new_balance} in your account!\n{Style.reset}")
+                        # return new_balance
                     else:
                         print(f"{Fore.red}Insufficient Funds{Style.reset}")
                         app_balance.append ([name,pin,balance])
@@ -67,6 +68,7 @@ def deposit(main_file, name, pin, balance, amount):
                     new_balance = balance + amount
                     app_balance.append([name,pin,new_balance])
                     print(f"{Fore.blue}Thanks {name}! You have deposited ${amount}, you now have ${new_balance} in your account!\n{Style.reset}")
+                    # return new_balance
         with open(main_file, "w") as f:
             writer = csv.writer(f)
             writer.writerows(app_balance)
@@ -80,6 +82,8 @@ def remove_account(main_file, pin):
             for row in reader:
                 if (pin != row[1]):
                     new_file.append(row) 
+                else:
+                    return row[2]
     with open(main_file, "w") as f:
             writer = csv.writer(f)
             writer.writerows(new_file)
