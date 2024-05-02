@@ -15,13 +15,13 @@ initial_balance = 100
 
 # Simple function for user input to return name variable
 def ask_name():
-    name = input("Please enter your Name: ")
+    name = input(f"\n{Fore.yellow}Please enter your Name: {Style.reset}")
     return name
 
 # Simple function to return PIN from user input. To be reused in multiple functions.
 # print message of "invalid pin" will occur if input doesnt meet the criteria of being 4 digits
 def ask_pin():
-    pin = input("Please enter a 4 digit PIN: ")
+    pin = input(f"\n{Fore.yellow}Please enter a 4 digit PIN: {Style.reset}")
     if pin.isdigit() and len(pin) == 4:
         return pin
     else:
@@ -31,7 +31,7 @@ def ask_pin():
 # Simple function to call where user input for amount is required. Value Error for negative integers
 def ask_amount():
     try:
-        amount = int(input("Please enter amount: "))
+        amount = int(input(f"\n{Fore.yellow}Please enter amount: {Style.reset}"))
         if amount > 0:
             return amount
     except ValueError:
@@ -83,7 +83,7 @@ def welcome_menu():
         handle_access()
 
     elif (selection == "3"):
-        print ("Thanks for banking with Terminal Bank! See you again soon")
+        print (f"\n{Back.black}{Fore.white}Thanks for banking with Terminal Bank! See you again soon{Style.reset}")
         exit()
     else:
         print(f"\n{Fore.red}Please select from the options{Style.reset}\n")
@@ -118,12 +118,16 @@ def main_menu(main_file, name, pin, balance):
         main_menu(main_file, name, pin, balance)
 
     elif (choice == "4"):
-        confirm = input("Are you sure you want to remove account? Y/N: ")
+        final_balance = remove_account(main_file, pin)
+        confirm = input(f"{Back.red}Are you sure you want to remove account? Y/N: {Style.reset}")
         if confirm.upper() == "Y":
-            final_balance = remove_account(main_file, pin)
-            print(f"\nThanks {name}! Your account has been removed. Please take your ${final_balance}\n")
+            print(f"\n{Back.blue}Thanks {name}! Your account has been removed. Please take your ${final_balance}{Style.reset}\n")
             welcome_menu()
+        elif confirm.upper() == "N":
+            print(f"\nYour account has been kept, {name}. You still have ${final_balance} in your account")
+            main_menu(main_file, name, pin, balance)
         else:
+            print(f"{Fore.red}Invalid input{Style.reset}")
             main_menu(main_file, name, pin, balance)
 
     elif (choice == "5"):

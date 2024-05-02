@@ -45,6 +45,14 @@ User is able to input a value amount which is subtracted from running balance. A
 
 ### Using the Application
 
+chmod +x src/run.sh
+
+./src/run.sh
+
+chmod +x src/functiontest.sh
+
+./src/functiontest.sh
+
 ### Implementation
 A link to Trello Board, which tracks progress through application development.
 
