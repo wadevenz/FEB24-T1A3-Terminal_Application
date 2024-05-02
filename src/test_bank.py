@@ -2,6 +2,7 @@ import pytest
 
 from bank_functions import create_account, get_account, withdraw, deposit
 
+# manually created headings in 'test_account_csv' for test to work
 
 def test_create_account():
     name = 'Wade'
@@ -24,7 +25,7 @@ def test_get_account():
     assert get_account ('test_account.csv','9876') == {'name':'Sherlock','pin': '9876','balance':'200'}
     assert get_account ('test_account.csv','1111') != {'name':'Wade','pin': '1111','balance':'200'}
 
-# to test following functions, temporary 'return = new_balance' added within the functions
+# to test following functions, temporary 'return = new_balance' added within the functions in bank_functions
 
 def test_withdraw():
     name = 'Watson'
