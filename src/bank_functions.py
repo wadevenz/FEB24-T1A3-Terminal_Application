@@ -45,14 +45,15 @@ def withdraw(main_file, name, pin, balance, amount):
                         print(f"\n{Fore.blue}Thanks {name}! You have withdrawn ${amount}, you now have ${new_balance} in your account!\n{Style.reset}")
                         # return new_balance
                     else:
-                        print(f"\n{Fore.red}Insufficient Funds{Style.reset}")
-                        app_balance.append ([name,pin,balance])
+                        print(f"{Fore.red}Insufficient Funds{Style.reset}")
+                        app_balance.append([name,pin,balance])
                         continue
         with open(main_file, "w") as f:
             writer = csv.writer(f)
             writer.writerows(app_balance)
     except TypeError:
         print(f"{Fore.red}Please enter valid input{Style.reset}")
+    
     
 # return commented out for use only in testing
 
@@ -66,10 +67,10 @@ def deposit(main_file, name, pin, balance, amount):
                     app_balance.append(row)
                 else:
                     balance = int(row[2])
-                    new_balance = balance + amount
-                    app_balance.append([name,pin,new_balance])
-                    print(f"\n{Fore.blue}Thanks {name}! You have deposited ${amount}, you now have ${new_balance} in your account!\n{Style.reset}")
-                    # return new_balance
+                    inc_balance = balance + amount
+                    app_balance.append([name,pin,inc_balance])
+                    print(f"\n{Fore.blue}Thanks {name}! You have deposited ${amount}, you now have ${inc_balance} in your account!\n{Style.reset}")
+                    # return inc_balance
         with open(main_file, "w") as f:
             writer = csv.writer(f)
             writer.writerows(app_balance)
