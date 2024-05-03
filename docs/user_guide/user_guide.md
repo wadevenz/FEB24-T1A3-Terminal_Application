@@ -30,7 +30,7 @@ Now back at the start, lets access the account we have just opened. Enter '2' in
 
 ![Accessed Menu](/docs/user_guide/accessed_menu.png)
 
-We've made it to the main menu inside the account. From here we dan select all the major features of the application. 
+We've made it to the main menu inside the account. From here we can select all the major features of the application. 
 
 ### Viewing your balance
 ![View balance](/docs/user_guide/balance_view.png)
@@ -47,9 +47,10 @@ For example, lets witdraw $50 by inputting the number '50' into our terminal. Su
 ![withdraw](/docs/user_guide/print_withdraw.png)
 
 However, if you attempted to input a number greater than what you have in your balance you would receive a message stating "Insufficient Funds".
+
 ![Insufficient](/docs/user_guide/insufficient_err.png)
 
-Anyways, we have $50 in our account, lets put some more in.
+Now we have $50 in our account, let's put some more in.
 
 ### Deposit
 Back at the access menu, we can enter '3' to utilise the deposit feature. 

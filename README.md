@@ -8,7 +8,7 @@ Howdy! Welcome to the Terminal Bank. A simple application where users interactin
 [**GitHub**](https://github.com/wadevenz/FEB24-T1A3-Terminal_Application)
 
 ### Functionality
-The basic functionality of this application revolves around the creation of a central csv file that initialises with three headers; name, pin and balance. User inputs will populate these fields as lists, and will be called upon for features listed below. 
+The basic functionality of this application revolves around the creation of a central csv file that initialises with three headers: name, pin and balance. User inputs will populate these fields as lists, and will be called upon for features listed below. 
 
 #### Small Functions
 There are a few smaller functions utilised throughout this application that check conditions, assign variables and return data to enable the main functions to work. Ill quickly discuss these as they will be refeered to later. 
@@ -26,17 +26,17 @@ This function also asks user to input a 4 digit pin. The input is put through tw
 ##### ask_amount 
 ![ask_amount](docs/ask_amount.png)
 
-The amount is assigned to the input asking for the user to specify a value amount. Using 'int' method to encompas input, the amount will be returned an integer. Before it is returned however, it is put through a conditional if statement to check whether the user input is above 0. A ValueError exception is raised if input is unexpected, such as alphabet character that cannot be converted to integer. A TypeError is also raised in the other functions utilising 'ask_amount' when the incorrect Value is inputted including an amount that is less than 0. 
+The amount is assigned to the input asking for the user to specify a value amount. Using 'int' method to encompass input, the amount will be returned an integer. Before it is returned however, it is put through a conditional if statement to check whether the user input is above 0. A ValueError exception is raised if input is unexpected, such as alphabet character that cannot be converted to integer. A TypeError is also raised in the other functions utilising 'ask_amount' when the incorrect Value is inputted including an amount that is less than 0. 
 
 ##### get_account
 ![get_account](docs/get_account.png)
 
-This function uses the parameters of the csv file and pin returned from user input. The function works by opening the file in a 'read' mode. Utilising csv package, the function is able to read the csv file as a dictionary using "Dictreader".Then through a for loop, iterates through each line of the csv file, checking for the 'value' that matches the pin 'key'. If the pin 'key' finds a match it returns the corresponding line in the csv file. This row can then assigned to the 'current_user' object in the menu for use in other functions. This function also uses a try/ except to raise an exception for the FileNotFoundError, if the file trying to be read does not exist. This error was identified in testing. The function returns "None" in the case of this error. 
+This function uses the parameters of the csv file and pin returned from user input. The function works by opening the file in a 'read' mode. Utilising csv package, the function is able to read the csv file as a dictionary using "Dictreader". Then through a for loop, iterates through each line of the csv file, checking for the 'value' that matches the pin 'key'. If the pin 'key' finds a match it returns the corresponding line in the csv file. This row can then assigned to the 'current_user' object in the menu for use in other functions. This function also uses a try/except to raise an exception for the FileNotFoundError, if the file trying to be read does not exist. This error was identified in testing. The function returns "None" in the case of this error. 
 
 ##### handle_create
 ![handle_create](docs/handle_create.png)
 
-Simply uses the inputs from 'ask_name' and 'ask_pin' and calls the 'create_account' feature discussed below. 
+Simply uses the inputs from 'ask_name' and 'ask_pin' and assigns the returns to their respective variables. Then calls the 'create_account' feature discussed below with variables set as parameters, including the 'initial_balance' initialised at '100'. 
 
 ##### handle_access
 ![handle_access](docs/handle_access.png)
@@ -53,7 +53,7 @@ The opening menu is called first. It prints 3 options and asks for user input to
 ##### Main Menu
 ![main_menu](docs/main_menu.png)
 
-The only significant difference in functionality from the 'welcome_menu' is the "Remove Account" option. Within this option in the menu, a further user input has been requested to confirm account removal. Conditional statements are utilised to compare input and option with the extra method of .upper() used to correctly make comparison. Depending on the user input, the remove account function is called, and user is sent back to 'welcome_menu', or the 'main_menu' is recursive with print statements displaying that the account has either been kept or the input was incorrect. 
+The only significant difference in functionality from the 'welcome_menu' is the "Remove Account" option. Within this option in the menu, a further user input has been requested to confirm account removal. Conditional statements are utilised to compare input with either "Y" or "N". The method of .upper() is used to correctly make comparison. Depending on the user input, the remove account function is called, and user is sent back to 'welcome_menu', or 'main_menu' is recursively called. Print statements accompany both options and an error message is also printed when the user input matches neither "Y" or "N". This also uses reursion to all 'main_menu'.
 
 #### Return and Exit
 From the menu in an accessed account, one conditional from the menu is "Back". If the user input conditional is met for this option, the "welcome_menu" is immediately called. The "Exit" option from this menu, will print a final statement before exiting the program if the user selects this option. 
@@ -102,11 +102,12 @@ This last feature is similar to the previous as it initalises a list to 'new_fil
 ### Code Style Guidelines
 [PEP 8](https://peps.python.org/pep-0008/#introduction) was the style guide for this assessment. 
 Some of the notable styles that were attempted to be adhered to rigidly were:
--lower case for function names seperated by underscores e.g create_account
--appropriate indentation
--import on seperate lines with appropriate grouping
--avoiding improper variable and object naming
--wrapped to achieve max 79 characters per line
+
+    - lower case for function names seperated by underscores e.g create_account
+    - appropriate indentation
+    - import on separate lines with appropriate grouping
+    - avoiding improper variable and object naming
+    - wrapped to achieve max 79 characters per line
 
 
 ### Getting Started
