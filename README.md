@@ -66,10 +66,11 @@ From the menu in an accessed account, one conditional from the menu is "Back". I
 In the initial menu, it will enable the user to create an account. The user will input a name and a unique 4 digit PIN which will be stored in a csv file. A bonus of "$100" is also added to balance with a print message to indicate this has been done. 
 
 ##### How it works
-An initial intermediate handle function is called which utilises two seperate functions to independently return user input for 'name' and 'PIN' respectively. The PIN input is run through conditional statements to assure it contains only digits and is only 4 characters long. If the conditions return 'True' then 'create_account' function is called. An error message is printed if conditions are not met and returns to initial menu. The 'create_account' function contains one other function called the 'get_account' function which opens the file and reads as a Dictionary. It is designed to return the 'row' where user 'pin' input matches the corresponding title, if not to return 'None'. In 'create_account', a 'None' will print a message requiring a unique PIN, however if 'row' is returned from 'get_account', the file is opened in write mode and the row is written to next line. The 'initial_balance' initialised to '100' is also written in balance and a print message is then displayed to user. 
+It is important for functionality that each pin is unique so that appropriate data can be collected and assigned to current user. Therefore the first step of the 'create_account' is to utilise the 'get_account' funtion to check whether a row with the same pin value already exists. If 'get_account' does not return 'None' then it prints a message stating a unique pin is required.If 'get_account' returns 'None' then an account can be created with the variables given by opening the file using the 'with' statement in 'append' mode. The variables are then appended in order to the csv, assigned to their appropriate indices. The with statement is useful for opening files as it enables a file to be closed automatically. 
 
 #### Access Account
 The same initial menu also allows users to access accounts already created with the use of PIN the user has self determined. This option will open a secondary menu from which the other features operate. 
+
 ##### How it works
 Reusing the 'ask_pin' function from before, the users 'pin' input is then run through the 'get_account' function again. If the 'get_account' function does not return 'None', the row it returns is then assigned to the varibale 'current_user'. Each key from the dictionary of the row in 'current_user' is the assigned as parameters to the 'main_menu' alongside the file name. Because the 'main_menu' is accessed with the information relating to user from the file, user pin is no longer required until returning to initial 'welcome_menu'.
 
@@ -77,6 +78,7 @@ Reusing the 'ask_pin' function from before, the users 'pin' input is then run th
 ![view_balance](docs/view_balance.png)
 
 This displays the current users remaining balance. 
+
 ##### How it works
 Utilising the 'get_account' function, the balance is assigned to a variable and the printed to screen. 
 
@@ -84,20 +86,22 @@ Utilising the 'get_account' function, the balance is assigned to a variable and 
 ![withdraw](docs/withdraw.png)
 
 User is able to input a value amount which is subtracted from running balance. A printed message is then displayed informing user of transaction. 
+
 ##### How it works
-A variable app_balance is initialised to a list. The main file is then opened from the 'with' command into a read mode. "reader" variable is set to to reader method imported from the csv package. Then utilisng a for loop to iterate through every line or 'row' in the file, a condition is set to make comparison with the 'pin' column in rown index 1. If pin does not equal or returns false for that row, the entire row is appended to the list 'app_balance'. If the pin comparison equates to True (indicated from the else condition), the balance in row index 2 of the line is made to an integer for use in math calculation. A condition is asked if the amount is less than or equal to the balance set in the function parameter, and if True, the amount is subtracted from the balance and set to the variable 'new_balance'. The variable 'app_balance' is then appended with the 'name', 'pin' and 'new_balance' variables and a print statement is diplayed. If the 'amount less than balance' condition is False, then the row is appended as it is read to the 'app_balance' list and a print statement is displayed. The funtion is completed by opeing the file in 'write' mode and wirting over the preexsiting data with thenewly created 'app_balance' list. As mentioned earlier in 'ask_amount', this function also uses try/exception to indentify a TypeError for incorrect amount input. 
+A variable app_balance is initialised to a list. The main file is then opened from the 'with' command into a read mode. "reader" variable is set to to reader method imported from the csv package. Then utilisng a for loop to iterate through every line or 'row' in the file, a condition is set to make comparison with the 'pin' column in rown index 1. If pin does not equal or returns false for that row, the entire row is appended to the list 'app_balance'. If the pin comparison equates to True (indicated from the else condition), the balance in row index 2 of the line is made to an integer for use in math calculation. A condition is asked if the amount is less than or equal to the balance set in the function parameter, and if True, the amount is subtracted from the balance and set to the variable 'new_balance'. The variable 'app_balance' is then appended with the 'name', 'pin' and 'new_balance' variables and a print statement is diplayed. If the 'amount less than balance' condition is False, then the row is appended as it is read to the 'app_balance' list and a print statement is displayed. The funtion is completed by opening the file in 'write' mode and writing over the preexisting data with the newly created 'app_balance' list. As mentioned earlier in 'ask_amount', this function also uses try/exception to indentify a TypeError for incorrect amount input. 
 
 #### Deposit.
 ![deposit](docs/deposit.png)
 
-User is able to input a value amount which is added to running balance. A printed message is then displayed informing user of transaction. 
+User is able to input a value amount which is added to running balance. A printed message is then displayed informing user of transaction.
+
 ##### How it works
 How this function works is very similar to the withdraw function above, however no condition is neccessary for checking whether the amount value is less than the balance. Also rather than a subtraction, an addition is made to calculate the new balance. 
 
 #### Remove Account
 ![remove_account](docs/remove.png)
 
-This last feature is similar to the previous as it initalises a list to 'new_file' and opens the main file in 'read' mode. Iterating through each'row'using a for loop, the if pin does not equal the 'row' index 1 condition for each iteration, appending the list in the variable 'new_file'. If the condtion is False or in other words the pin equals index 1 of the 'row', the balance or index 2 of the 'row' is returned. This will e set to a variable in the menu for a print statement to be displayed to the user for 'final_balance'.
+This last feature is similar to the previous as it initalises a list to 'new_file' and opens the main file in 'read' mode. Iterating through each'row'using a for loop, the if pin does not equal the 'row' index 1 condition for each iteration, appending the list in the variable 'new_file'. If the condtion is False or in other words the pin equals index 1 of the 'row', the balance or index 2 of the 'row' is returned. This will be set to a variable in the menu for a print statement to be displayed to the user for 'final_balance'.
 
 ### Code Style Guidelines
 [PEP 8](https://peps.python.org/pep-0008/#introduction) was the style guide for this assessment. 
@@ -109,7 +113,7 @@ Some of the notable styles that were attempted to be adhered to rigidly were:
     - avoiding improper variable and object naming
     - wrapped to achieve max 79 characters per line
 
-
+(5)
 ### Getting Started
 This application has been created, executed and tested with macOS. If using a Windows operating system, please ensure all operations are run in WSL.
 
@@ -134,6 +138,7 @@ pluggy==1.5.0
 pytest==8.2.0
 tomli==2.0.1
 
+(Ref: 1,2,3,4)
 #### Testing
 While pretty extensive, and regular user testing was one throughout the coding process, a package called[pytest](https://docs.pytest.org/en/8.2.x/) was utilised for unittest. A seperate file called 'test_bank' contains these tests. For these tests to operate, the commented out returns on the 'withdraw' and 'deposit' functions from within 'bank_functions' file, will need to be restored. The command `pytest` in terminal will then execute a test. 
 
@@ -164,12 +169,12 @@ Prioritisation was done via color labels where red was highest priority and blue
 
 ### References
 
-https://docs.python.org/3/library/csv.html
+1. Python Software Foundation, 2001, csv - CSV File Reading and Writing, https://docs.python.org/3/library/csv.html
 
-https://docs.pytest.org/en/8.2.x/
+2. Krekel, H & pytest Dev team, 2015, pytest: helps you write better programs, https://docs.pytest.org/en/8.2.x/
 
-https://docs.python.org/3/library/os.path.html
+3. Python Software Foundation, 2024, o.s. path - Common pathname manipulations, accesssed April 2024, https://docs.python.org/3/library/os.path.html
 
-https://dslackw.gitlab.io/colored/
+4. Zlatanidis D 2023, colored, GitLab, accessed April 2024, https://dslackw.gitlab.io/colored/
 
-https://peps.python.org/pep-0008/#introduction
+5. van Rossum G, Warsaw B, Coghlan A, 2001, PEP 8 - Style Guide for Python Code, accessed April 2024, https://peps.python.org/pep-0008/#introduction
