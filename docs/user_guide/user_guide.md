@@ -91,6 +91,10 @@ Enter '5' to go back.
 
 ![Welcome Menu](/docs/user_guide/open_menu.png)
 
+One final note about creating an account. If from this menu you decide to create another account by using the input '1', please remember all PINs are required to be unique. For example if 'Test' account was not removed and we wanted to create another account, inserting the same PIN of '0000' would display an error message as seen below. However, no problem! Just try again using a different 4 numbers starting from the beginning menu. 
+
+![same pin](/docs/user_guide/same_pin.png)
+
 If we are all done with the application you can exit by pressing '3' from the Welcome menu.
 
 Hope you have found this guide useful, Thanks again for using the Terminal Bank application!

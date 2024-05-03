@@ -113,7 +113,7 @@ Some of the notable styles that were attempted to be adhered to rigidly were:
     - avoiding improper variable and object naming
     - wrapped to achieve max 79 characters per line
 
-(5)
+(5)(van Rossum, Warsaw,Coghlan, 2001)
 ### Getting Started
 This application has been created, executed and tested with macOS. If using a Windows operating system, please ensure all operations are run in WSL.
 
