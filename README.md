@@ -148,7 +148,7 @@ While pretty extensive, and regular user testing was one throughout the coding p
 ### User Guide
 A handy help guide to run beginners through the usage of my application. 
 
-[User Guide](docs/user_guide.md)
+[User Guide](docs/user_guide/user_guide.md)
 
 
 ### References
