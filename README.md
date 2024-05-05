@@ -115,9 +115,7 @@ Some of the notable styles that were attempted to be adhered to rigidly were:
 
 (5)(van Rossum, Warsaw,Coghlan, 2001)
 ### Getting Started
-This application has been created, executed and tested with macOS. If using a Windows operating system, please ensure all operations are run in WSL.
-
-Once the application has been cloned from the Git repository (link provided above), you will need to run this command in your terminal:
+Once the application has been cloned from the Git repository (link provided above) into a directory, you will need to open the command line interface or terminal. This application was created and tested on macOS. For windows users please consider using WSL. Once in terminal please enter the directory that has all files associated with application from Git. Then run this first command:
 
 `chmod +x src/run.sh`
 
@@ -125,7 +123,8 @@ That command will make the bash script an executable file which will allow you t
 
 `./src/run.sh`
 
-This will check that python is installed, create a virtual environment and then install all packages and dependencies required for application function. The application will then run, voila!. 
+This will check that python is installed, create a virtual environment and then install all packages and dependencies required for application function. The application will then run, voila!. If you do not have Python 3 installed however, an error message will display. Please visit: https://www.python.org/downloads/ to download and install. 
+
 
 ### Dependencies
 The code required for application is located in the 'src' folder of the repository. As mentioned above, this application utilises Python3, which the script will do an installation check before running. The dependencies that will be installed once a Vitrual environment has been created will be:
@@ -178,3 +177,6 @@ Prioritisation was done via color labels where red was highest priority and blue
 4. Zlatanidis D 2023, colored, GitLab, accessed April 2024, https://dslackw.gitlab.io/colored/
 
 5. van Rossum G, Warsaw B, Coghlan A, 2001, PEP 8 - Style Guide for Python Code, accessed April 2024, https://peps.python.org/pep-0008/#introduction
+
+6. Coder Academy, 2024, Ed lesson - Bash Scripting: An introduction, https://edstem.org/au/courses/14478/lessons/47046/slides/320144
+<!-- Note for tutors. this reference to Ed lesson was for help with the 'check python' function in bash script. I have maade an update to 'python3' for use in my application.-->

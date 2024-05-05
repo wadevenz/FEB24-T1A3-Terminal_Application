@@ -92,7 +92,7 @@ def welcome_menu():
 
 
 def main_menu(main_file, name, pin, balance):
-    print(f"\n{Back.black}Account - {name}{Style.reset}\n")
+    print(f"\n{Back.black}{Fore.white}Account - {name}{Style.reset}\n")
     print(f"\n{Fore.cyan}1. View Balance")
     print("2. Withdrawal")
     print("3. Deposit")
@@ -118,7 +118,7 @@ def main_menu(main_file, name, pin, balance):
         confirm = input(f"\n{Back.red}{Fore.white}Are you sure you want to remove account? Y/N: {Style.reset}")
         if confirm.upper() == "Y":
             remove_account(main_file, pin)
-            print(f"\n{Back.blue}Thanks {name}! Your account has been removed. Please take your ${final_balance}{Style.reset}\n")
+            print(f"\n{Back.blue}{Fore.white}Thanks {name}! Your account has been removed. Please take your ${final_balance}{Style.reset}\n")
             welcome_menu()
         elif confirm.upper() == "N":
             print(f"\nYour account has been kept, {name}. You still have ${final_balance} in your account")
