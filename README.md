@@ -129,13 +129,13 @@ This will check that python is installed, create a virtual environment and then 
 ### Dependencies
 The code required for application is located in the 'src' folder of the repository. As mentioned above, this application utilises Python3, which the script will do an installation check before running. The dependencies that will be installed once a Vitrual environment has been created will be:
 
-colored==2.2.4
-exceptiongroup==1.2.1
-iniconfig==2.0.0
-packaging==24.0
-pluggy==1.5.0
-pytest==8.2.0
-tomli==2.0.1
+* colored==2.2.4
+* exceptiongroup==1.2.1
+* iniconfig==2.0.0
+* packaging==24.0
+* pluggy==1.5.0
+* pytest==8.2.0
+* tomli==2.0.1
 
 (Ref: 1,2,3,4)
 #### Testing
